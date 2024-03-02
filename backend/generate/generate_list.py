@@ -45,7 +45,7 @@ class Generate:
         response = self.modelText.generate_content(f"I am suffering from {r_image.text}. I am from {location}. Generate me a list of all the nearby doctors who can treat me. Provide their names and contact info and address. Generate only the name contact info and address in a structured manner, nothing else.")
         return response.text
     def get_text_list(self,location,symptoms):
-        prompt = prompt = eval(f'f"{self.GEMINI_TEXT_PROMPT}"')
+        prompt = eval(f'f"{self.GEMINI_TEXT_PROMPT}"')
         response = self.modelText.generate_content(prompt)
         return response.text
 
