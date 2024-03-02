@@ -16,6 +16,8 @@ class Generate:
         genai.configure(api_key=self.API)
         self.modelText = genai.GenerativeModel('gemini-pro')
         self.modelImage = genai.GenerativeModel('gemini-pro-vision')
+        self.GEMINI_TEXT_PROMPT = os.environ.get("GEMINI_TEXT_PROMPT")
+        self.GEMINI_IMAGE_PROMPT = os.environ.get("GEMINI_IMAGE_PROMPT")
     
     def cloud_upload(self, image):
         firebase = Firebase()
@@ -35,7 +37,7 @@ class Generate:
 
 
     def get_image_list(self,location,image):
-        prompt = "Identify the disease in the image. Provide the common name of the disease. Provide only the disease name and nothing else."
+        prompt = eval(f'f"{self.GEMINI_IMAGE_PROMPT}"')
         img=PIL.Image.open(image)
         r_image = self.modelImage.generate_content([prompt, img], stream=True)
         r_image.resolve()
@@ -43,7 +45,7 @@ class Generate:
         response = self.modelText.generate_content(f"I am suffering from {r_image.text}. I am from {location}. Generate me a list of all the nearby doctors who can treat me. Provide their names and contact info and address. Generate only the name contact info and address in a structured manner, nothing else.")
         return response.text
     def get_text_list(self,location,symptoms):
-        prompt = f"I am suffering from {symptoms}. I am from {location}. Generate me a list of all the nearby doctors who can treat me. Provide their names and contact info and address. Generate only the name contact info and address in a structured manner, nothing else."
+        prompt = prompt = eval(f'f"{self.GEMINI_TEXT_PROMPT}"')
         response = self.modelText.generate_content(prompt)
         return response.text
 
