@@ -12,7 +12,7 @@ export default function Bottomnav() {
               
               (isActive
                 ? "refer text-[0.8rem] sm:text-[1rem] text-center  border-solid border-[2.3px] border-[#00FF29] bg-[#000000] text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]"
-                : "refer text-[0.8rem] sm:text-[1rem] text-center bg-[#00FF29] text-[#000000] hover:border-solid hover:border-[2.3px] hover:border-[#00FF29] hover:bg-[#000000] hover:text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]")
+                : "refer text-[0.8rem] sm:text-[1rem] text-center bg-[#00FF29] text-[#000000] hover:border-solid hover:border-[2.3px] hover:border-[#00FF29] hover:bg-transparent hover:text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]")
             );
           }}
           
@@ -26,7 +26,7 @@ export default function Bottomnav() {
               
               (isActive
                 ? "refer text-[0.8rem] sm:text-[1rem] text-center  border-solid border-[2.3px] border-[#00FF29] bg-[#000000] text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]"
-                : "refer text-[0.8rem] sm:text-[1rem] text-center bg-[#00FF29] text-[#000000] hover:border-solid hover:border-[2.3px] hover:border-[#00FF29] hover:bg-[#000000] hover:text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]")
+                : "refer text-[0.8rem] sm:text-[1rem] text-center bg-[#00FF29] text-[#000000] hover:border-solid hover:border-[2.3px] hover:border-[#00FF29] hover:bg-transparent hover:text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]")
             );
           }}>
           Field B
@@ -38,13 +38,13 @@ export default function Bottomnav() {
               
               (isActive
                 ? "refer text-[0.8rem] sm:text-[1rem] text-center  border-solid border-[2.3px] border-[#00FF29] bg-[#000000] text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]"
-                : "refer text-[0.8rem] sm:text-[1rem] text-center bg-[#00FF29] text-[#000000] hover:border-solid hover:border-[2.3px] hover:border-[#00FF29] hover:bg-[#000000] hover:text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]")
+                : "refer text-[0.8rem] sm:text-[1rem] text-center bg-[#00FF29] text-[#000000] hover:border-solid hover:border-[2.3px] hover:border-[#00FF29] hover:bg-transparent hover:text-[#00FF29] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem]")
             );
           }}
         >
           Teams
         </NavLink>
-        <div className="animation start-home absolute h-[10rem] bg-blue-300 top-0 width-[150px] z-[999] left-0"></div>
+        
       </nav>
     </section>
   );

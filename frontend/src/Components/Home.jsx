@@ -13,10 +13,10 @@ export default function Home() {
         </div>
         
         <Videosection/>
-        <div className='homebtn min-h-screen'>
+        <div className='homebtn min-h-[110vh]'>
             <Home_about/>
         </div>
-        <div className="down fixed bottom-[3rem] w-[100%] flex justify-center items-center">
+        <div className="down fixed bottom-[1rem] w-[100%] flex justify-center items-center">
             <Bottomnav/>
         </div>
       
