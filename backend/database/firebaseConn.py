@@ -25,7 +25,7 @@ class Firebase:
         }
         self.firebase = pyrebase.initialize_app(self.config)
         self.storage = self.firebase.storage()
-        self.cloud_storage_path = '/'
+        self.cloud_storage_path = '/' 
     
     def upload_files(self,local_image_path, file_name):
         try:
