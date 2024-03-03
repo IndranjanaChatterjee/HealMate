@@ -27,16 +27,18 @@ class Firebase:
         self.storage = self.firebase.storage()
         self.cloud_storage_path = '/'
     
-    def upload_files(self,local_image_path):
+    def upload_files(self,local_image_path, file_name):
         try:
-            self.storage.child(self.cloud_storage_path).put(local_image_path)
+            print(self.storage)
+            self.storage.child(f"{self.cloud_storage_path}{file_name}").put(local_image_path)
             print("Image uploaded successfully.")
+            os.remove(local_image_path)
             return jsonify({"status_code": 200,"message": "Image uploaded successfully."}),200
         except Exception as e:
             return jsonify({"status_code": 500,"message": "Error Uploading image"}),500
     def delete_files(self,local_image_path):
         try:
-            self.storage.delete(token=None, name=f"{self.cloud_storage_path}{local_image_path}")
+            self.storage.delete(token=None, name=f"{local_image_path}")
             print("Image deleted successfully.")
             return jsonify({"status_code": 200,"message": "Image deleted successfully."}),200
         except Exception as e:

@@ -8,7 +8,7 @@ from flask import Flask, jsonify,request, session
 from flask_cors import CORS
 from flask_session import Session
 from generate.generate_list import Generate
-
+import PIL
 #Working Code
 gemini_api_key = os.environ.get("GEMINI_API_KEY")
 FLASK_SECRET_KEY = os.environ.get("FLASK_SECRET_KEY")
@@ -72,7 +72,6 @@ def login():
 
 
 @app.route('/get_text_diagnosis', methods=['POST','GET'])
-@login_required
 def get_text_diagnosis():
     """ 
     Function to generate and return the list of doctors based on symptoms
@@ -95,7 +94,6 @@ def get_text_diagnosis():
 
 
 @app.route('/get_image_diagnosis', methods=['POST','GET'])
-@login_required
 def get_image_diagnosis():
     """ 
     Function to generate and return the list of doctors based on image given by user
@@ -105,9 +103,9 @@ def get_image_diagnosis():
     Returns:
         JSON: JSON containing the markdown upon successful generation.
     """
-    user_email = request.args.get('email')
-    image = request.args.get('image')
-    location=request.args.get('location')
+    user_email = request.form.get('user_email')
+    image = request.files.get('image')  # Access image as a file object
+    location = request.form.get('location')
     generate = Generate(gemini_api_key)
     text = generate.get_image_list(location,image)
     #List inserting into database will go here
