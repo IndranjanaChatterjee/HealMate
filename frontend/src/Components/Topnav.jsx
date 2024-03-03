@@ -11,10 +11,10 @@ export default function Topnav() {
         <Link to="/"><img src={logo} alt="logo" className="w-[7rem]"/></Link>
       </div>
       <div className="register flex flex-row justify-center items-center gap-[3rem] px-[1rem]">
-        <div className="sign text-[1.5rem] text-[#ffffff]  py-[1rem]  hover:border-b-solid  hover:border-b-[4px]  hover:border-b-[#ffffff] cursor-pointer transition-all ease-linear duration-150">
+        <div className="sign sm:text-[1.5rem] text-center text-[1rem] text-[#ffffff]  py-[1rem]  hover:border-b-solid  hover:border-b-[4px]  hover:border-b-[#ffffff] cursor-pointer transition-all ease-linear duration-150">
           Sign Up
         </div>
-        <div className="log text-[1.5rem] text-[#ffffff] py-[1rem]  hover:border-b-solid  hover:border-b-[4px]  hover:border-b-[#ffffff] cursor-pointer transition-all ease-linear duration-150">
+        <div className="log sm:text-[1.5rem] text-[1rem] text-[#ffffff] py-[1rem]  hover:border-b-solid  hover:border-b-[4px]  hover:border-b-[#ffffff] cursor-pointer transition-all ease-linear duration-150">
           Login
         </div>
       </div>
