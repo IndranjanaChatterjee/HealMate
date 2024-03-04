@@ -4,25 +4,40 @@ import { Carousel } from "react-responsive-carousel";
 import pic from "../assets/ai.avif";
 import pic2 from "../assets/pic2.webp";
 import pic3 from "../assets/pic3.jpg";
-import pic4 from "../assets/pic4.webp";
+import pic4 from "../assets/pic4.jpg";
+
 import pic5 from "../assets/pic5.jpg";
+import pic6 from "../assets/pic6.png";
+import pic7 from "../assets/pic7.png";
+import pic8 from "../assets/pic8.png";
 import camera from "../assets/cam.png";
 import mic from "../assets/mic.png";
 import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 
 export default function Home_about() {
   return (
     <div>
       <div className="box  min-h-[110vh] sm:w-[80%] w-full flex flex-col justify-center items-center m-auto ">
-        <p className="text-[#ffffff] text-center w-full mb-[1.5rem] para">
+        <motion.p
+          className="text-[#ffffff] text-center w-full mb-[1.5rem] para"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           Say goodbye to the uncertainty of self-diagnosis and endless internet
           searches. Our revolutionary platform utilizes advanced AI algorithms
           to accurately diagnose health conditions based on your symptoms or
           even a simple picture.
-        </p>
+        </motion.p>
         <div className="info  flex  justify-center  items-center gap-[2rem] flex-wrap-reverse lg:flex-nowrap">
-          <div className="left text-[#ffffff] text-center backdrop-blur p-[1rem] border-solid border-[2.3px] border-[#00FF29] rounded-[2rem] m-[1rem]">
-            <div>
+          <motion.div
+            className="left text-[#ffffff] text-center backdrop-blur p-[1rem] border-solid border-[2.3px] border-[#23B740] rounded-[2rem] m-[1rem]"
+            initial={{ opacity: 0.5, x: -500 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
+          >
+            <motion.div>
               "Welcome to our revolutionary disease recognition platform! Simply
               upload an image of your symptoms or provide the disease name, and
               watch as our cutting-edge technology swiftly identifies the
@@ -30,19 +45,24 @@ export default function Home_about() {
               the nearby doctors specialized in treating your condition,
               tailored to your location. Get the help you need, right at your
               fingertips. Experience health care like never before!"
-            </div>
+            </motion.div>
             <div className="w-full flex flex-col justify-center items-center gap-[1rem] m-[1rem]">
-              <button className="btn flex flex-row justify-center items-center text-center  border-solid border-[2.3px] border-[#000000] bg-[#00FF29] text-[#000000] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem] hover:text-[#00FF29] hover:bg-transparent hover:border-solid hover:border-[2px] hover:border-[#00FF29]">
+              <button className="btn flex flex-row justify-center items-center text-center  border-solid border-[2.3px] border-[#000000] bg-[#23B740] text-[#000000] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem] hover:text-[#23B740] hover:bg-transparent hover:border-solid hover:border-[2px] hover:border-[#23B740]">
                 Discover by Snapping shots{" "}
                 <img src={camera} className="w-[2rem] text-[#000000]" />
               </button>
-              <button className="btn flex flex-row justify-center items-center text-center  border-solid border-[2.3px] border-[#000000] bg-[#00FF29] text-[#000000] transition-all ease-linear duration-100  rounded-[2rem] p-[0.4rem] hover:text-[#00FF29] hover:bg-transparent hover:border-solid hover:border-[2px] hover:border-[#00FF29]">
+              <button className="btn flex flex-row justify-center items-center text-center  border-solid border-[2.3px] border-[#000000] bg-[#23B740] text-[#000000] transition-all ease-linear duration-100  rounded-[2rem] p-[0.4rem] hover:text-[#23B740] hover:bg-transparent hover:border-solid hover:border-[2px] hover:border-[#23B740]">
                 Discover by disease name{" "}
                 <img src={mic} className="w-[2.5rem]" />
               </button>
             </div>
-          </div>
-          <div className="right   m-auto md:m-[1rem]  ">
+          </motion.div>
+          <motion.div
+            className="right   m-auto md:m-[1rem]  "
+            initial={{ opacity: 0.5, x: 500 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
+          >
             <Carousel
               infiniteLoop={true}
               autoPlay={true}
@@ -78,13 +98,41 @@ export default function Home_about() {
                   className="rounded-[1rem] w-[15rem] h-[23rem]"
                 />
               </div>
+              <div>
+                <img
+                  src={pic6}
+                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                />
+              </div>
+              <div>
+                <img
+                  src={pic7}
+                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                />
+              </div>
+              <div>
+                <img
+                  src={pic8}
+                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                />
+              </div>
             </Carousel>
-          </div>
+          </motion.div>
         </div>
-        <p className="join italic text-[#ffffff] text-center w-full mt-[1.5rem] para">
+        <motion.p
+          className="join italic text-[#ffffff] text-center w-full mt-[1.5rem] para"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           Join us and discover the power of{" "}
           <Typewriter
-            words={["Technology-driven disease detection", "AI-Powered Diagnosis", "Tech-driven disease recognition", "AI-powered healthcare"]}
+            words={[
+              "Technology-driven disease detection",
+              "AI-Powered Diagnosis",
+              "Tech-driven disease recognition",
+              "AI-powered healthcare",
+            ]}
             loop={1000}
             cursor
             cursorStyle="|"
@@ -92,7 +140,7 @@ export default function Home_about() {
             deleteSpeed={80}
           />{" "}
           ,redefining the way you approach wellness.
-        </p>
+        </motion.p>
       </div>
     </div>
   );

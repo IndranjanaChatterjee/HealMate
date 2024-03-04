@@ -76,3 +76,22 @@ a {
   .btn:hover{
     box-shadow: 1px 2px 10px 5px #00FF29;
   }
+  .left{
+    box-shadow: 1px 2px 10px 5px #00FF29;
+  }
+  .right{
+    box-shadow: 1px 2px 10px 5px #00FF29;
+    border-radius: 1rem;
+  }
+  .f{
+    animation: animate 2s linear infinite alternate-reverse;
+  }
+  @keyframes animate {
+    from{
+      bottom: 0;
+    }
+    to{
+      bottom: 60px;
+    }
+    
+  }
