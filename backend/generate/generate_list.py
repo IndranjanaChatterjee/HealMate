@@ -38,7 +38,41 @@ class Generate:
             return jsonify({"status_code": 200,"message": "Image uploaded successfully."}),200
         else:
            return jsonify({"status_code": 500,"message": "Error Uploading image"}),500 
+    
+    def parse_response(self,response):
+        # Split the response into individual entries
+        entries = response.split('\n')
 
+        # Initialize empty lists for name, address, and mobile
+        names = []
+        addresses = []
+        mobiles = []
+
+        # Iterate through each entry and extract information
+        for entry in entries:
+            if entry:
+                # Find the index of "Dr" in the entry
+                dr_index = entry.find("Dr. ")
+
+                # Check if "Dr" is found in the entry
+                if dr_index != -1:
+                    # Find the first colon (:) after "Dr"
+                    colon_index = entry.find(":", dr_index)
+
+                    # Ensure that both "Dr" and colon are found in the entry
+                    if colon_index != -1:
+                        # Extract the name between "Dr" and the first colon
+                        name = entry[dr_index + 3:colon_index].strip()
+                        names.append(name)
+                        
+                        # Split the remaining part of the entry into address and mobile using colon as a separator
+                        address_mobile_part = entry[colon_index + 1:].split(':')
+                        
+                        # Ensure that the remaining part has at least two parts (address and mobile)
+                        if len(address_mobile_part) == 2:
+                            addresses.append(address_mobile_part[0].strip())
+                            mobiles.append(address_mobile_part[1].strip())
+        return names, addresses, mobiles
 
     def generate_random_name(self, image_path):
         _, extension = os.path.splitext(image_path)
@@ -61,7 +95,9 @@ class Generate:
         prompt = eval(f'f"{self.GEMINI_IMAGE_PROMPT}"')
         response = self.modelText.generate_content(prompt)
         self.cloud_delete(new_name)
-        return response.text
+        names, addresses, mobiles = self.parse_response(response.text)
+        generated_data = [names, addresses, mobiles, r_image.text]
+        return generated_data
     def get_text_list(self,location,symptoms):
         prompt = eval(f'f"{self.GEMINI_TEXT_PROMPT}"')
         response = self.modelText.generate_content(prompt)

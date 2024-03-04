@@ -110,7 +110,7 @@ def get_image_diagnosis():
     text = generate.get_image_list(location,image)
     #List inserting into database will go here
     if text:
-        return jsonify({'status': 'success', 'data': text}), 200
+        return jsonify({'status': 'success', 'data': {"disease":text[3],"names":text[0],"address":text[1],"contact":text[2]}}), 200
     else:
         return jsonify({'status': 'error', 'message': 'Could not generate text'}), 500
 
