@@ -19,7 +19,11 @@
     "framer-motion": "^11.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "react-icons": "^5.0.1",
+=======
+    "react-fast-marquee": "^1.6.4",
+>>>>>>> 1df0741 (Many_changes)
     "react-responsive-carousel": "^3.2.23",
     "react-simple-typewriter": "^5.0.1"
   },

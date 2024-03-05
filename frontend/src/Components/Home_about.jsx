@@ -14,6 +14,7 @@ import camera from "../assets/cam.png";
 import mic from "../assets/mic.png";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
+import Marquee from "react-fast-marquee";
 
 export default function Home_about() {
   return (
@@ -30,9 +31,9 @@ export default function Home_about() {
           to accurately diagnose health conditions based on your symptoms or
           even a simple picture.
         </motion.p>
-        <div className="info  flex  justify-center  items-center gap-[2rem] flex-wrap-reverse lg:flex-nowrap">
+        <div className="info  flex  justify-center  items-center gap-[2rem] flex-wrap-reverse lg:flex-nowrap ">
           <motion.div
-            className="left text-[#ffffff] text-center backdrop-blur p-[1rem] border-solid border-[2.3px] border-[#23B740] rounded-[2rem] m-[1rem]"
+            className="left text-[#ffffff] text-center backdrop-blur p-[1rem] border-solid border-[2.3px] border-[#23B740] rounded-[2rem] m-[1rem] "
             initial={{ opacity: 0.5, x: -500 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5 }}
@@ -47,18 +48,18 @@ export default function Home_about() {
               fingertips. Experience health care like never before!"
             </motion.div>
             <div className="w-full flex flex-col justify-center items-center gap-[1rem] m-[1rem]">
-              <button className="btn flex flex-row justify-center items-center text-center  border-solid border-[2.3px] border-[#000000] bg-[#23B740] text-[#000000] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem] hover:text-[#23B740] hover:bg-transparent hover:border-solid hover:border-[2px] hover:border-[#23B740]">
+              <button className="btn glass flex flex-row justify-center items-center text-center    text-[#ffffff] transition-all ease-linear duration-100  rounded-[2rem] p-[0.5rem] hover:text-[#000000] hover:bg-transparent hover:border-solid hover:border-[2px] hover:border-[#23B740]">
                 Discover by Snapping shots{" "}
                 <img src={camera} className="w-[2rem] text-[#000000]" />
               </button>
-              <button className="btn flex flex-row justify-center items-center text-center  border-solid border-[2.3px] border-[#000000] bg-[#23B740] text-[#000000] transition-all ease-linear duration-100  rounded-[2rem] p-[0.4rem] hover:text-[#23B740] hover:bg-transparent hover:border-solid hover:border-[2px] hover:border-[#23B740]">
+              <button className="btn glass flex flex-row justify-center items-center text-center    text-[#ffffff] transition-all ease-linear duration-100  rounded-[2rem] p-[0.4rem] hover:text-[#000000] hover:bg-transparent hover:border-solid hover:border-[2px] hover:border-[#23B740]">
                 Discover by disease name{" "}
                 <img src={mic} className="w-[2.5rem]" />
               </button>
             </div>
           </motion.div>
           <motion.div
-            className="right   m-auto md:m-[1rem]  "
+            className="right   m-auto md:m-[1rem]   h-[30rem]"
             initial={{ opacity: 0.5, x: 500 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 1.5 }}
@@ -72,74 +73,64 @@ export default function Home_about() {
               showThumbs={false}
             >
               <div className="rounded-[2rem]">
-                <img src={pic} className="rounded-[1rem] w-[15rem] h-[23rem]" />
+                <img src={pic} className="rounded-[1rem] w-[15rem] h-[30rem]" />
               </div>
               <div>
                 <img
                   src={pic2}
-                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                  className="rounded-[1rem] w-[15rem] h-[30rem]"
                 />
               </div>
               <div>
                 <img
                   src={pic3}
-                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                  className="rounded-[1rem] w-[15rem] h-[30rem]"
                 />
               </div>
               <div>
                 <img
                   src={pic4}
-                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                  className="rounded-[1rem] w-[15rem] h-[30rem]"
                 />
               </div>
               <div>
                 <img
                   src={pic5}
-                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                  className="rounded-[1rem] w-[15rem] h-[30rem]"
                 />
               </div>
               <div>
                 <img
                   src={pic6}
-                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                  className="rounded-[1rem] w-[15rem] h-[30rem]"
                 />
               </div>
               <div>
                 <img
                   src={pic7}
-                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                  className="rounded-[1rem] w-[15rem] h-[30rem]"
                 />
               </div>
               <div>
                 <img
                   src={pic8}
-                  className="rounded-[1rem] w-[15rem] h-[23rem]"
+                  className="rounded-[1rem] w-[15rem] h-[30rem]"
                 />
               </div>
             </Carousel>
           </motion.div>
         </div>
         <motion.p
-          className="join italic text-[#ffffff] text-center w-full mt-[1.5rem] para"
+          className="join italic text-[#ffffff] text-center w-screen mt-[1.5rem] para"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          Join us and discover the power of{" "}
-          <Typewriter
-            words={[
-              "Technology-driven disease detection",
-              "AI-Powered Diagnosis",
-              "Tech-driven disease recognition",
-              "AI-powered healthcare",
-            ]}
-            loop={1000}
-            cursor
-            cursorStyle="|"
-            typeSpeed={120}
-            deleteSpeed={80}
-          />{" "}
-          ,redefining the way you approach wellness.
+          <Marquee pauseOnHover={true} autoFill={true}>
+          Join us and discover the power of AI-Powered Diagnosis
+          
+          ,redefining the way you approach wellness.{"  "}
+          </Marquee>
         </motion.p>
       </div>
     </div>

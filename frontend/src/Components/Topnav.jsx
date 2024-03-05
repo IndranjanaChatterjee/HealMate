@@ -7,8 +7,8 @@ export default function Topnav() {
   const navigate = useNavigate();
   return (
     <>
-      <div className="text-[#ffffff]  flex flex-row justify-between items-center  pt-[1rem]">
-        <div className="logo text-[2rem] text-[#ffffff] px-[1rem]  w-[10rem]">
+      <div className="up text-[#ffffff]  flex flex-row justify-between items-center  pt-[1rem]">
+        <div className="logo  text-[2rem] text-[#ffffff] px-[1rem]  w-[10rem]">
           <Link to="/">
             <motion.img
               src={logo}
