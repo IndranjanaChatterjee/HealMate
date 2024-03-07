@@ -18,9 +18,9 @@ const Diseases_search = () => {
 
   return (
     <div>
-      <div className="flex w-screen h-screen bg-dark justify-center overflow-x-hidden">
+      <div className="flex w-screen h-screen bg-dark justify-center overflow-x-hidden relative z-0">
         {showLeftSection && (
-          <div className=" animate__animated animate__fadeIn bg-sap   w-1/2 md:w-1/4 text-[10px] leftSection sm:text-[16px] h-[615px] m-2 rounded-tr-lg rounded-bl-lg flex flex-col items-center relative z-20">
+          <div className=" animate__animated animate__fadeIn bg-sap   w-1/2 md:w-1/4 text-[10px] leftSection sm:text-[16px] h-screen m-2 rounded-tr-lg rounded-bl-lg flex flex-col items-center relative z-20">
             <img
               src={avatar}
               className="sm:w-[160px] sm:h-[160px] w-[80px] h-[80px] mt-[50px] mb-[35px]"
@@ -35,7 +35,7 @@ const Diseases_search = () => {
             </ul>
           </div>
         )}
-        <div className="w-3/4 relative z-0 flex flex-col items-center">
+        <div className="w-3/4 fixed flex flex-col items-center">
           <div className="flex">
             <Link to="/">
               <div>
