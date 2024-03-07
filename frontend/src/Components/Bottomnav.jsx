@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Bottomnav() {
   return (
-    <section className="backdrop-blur border-solid border-[3px] border-[#23B740] w-[25rem] h-[3rem] flex justify-center items-center rounded-[2rem] py-[1.7rem] px-[1rem]">
+    <section className="backdrop-blur border-solid border-[3px] border-[#23B740] w-[25rem] h-[3rem] flex justify-center items-center rounded-[2rem] py-[1.7rem] px-[1rem] z-[999]">
       <nav className="flex flex-row justify-between items-center sm:gap-[3rem] gap-[1.5rem] relative ">
         <NavLink
           to="/pics"

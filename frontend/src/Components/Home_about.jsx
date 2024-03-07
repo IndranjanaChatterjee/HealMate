@@ -18,8 +18,8 @@ import Marquee from "react-fast-marquee";
 
 export default function Home_about() {
   return (
-    <div>
-      <div className="box  min-h-[110vh] sm:w-[80%] w-full flex flex-col justify-center items-center m-auto ">
+    <div className="box">
+      <div className="  min-h-[110vh] sm:w-[80%] w-full flex flex-col justify-center items-center m-auto ">
         <motion.p
           className="text-[#ffffff] text-center w-full mb-[1.5rem] para text-[1.3rem]"
           initial={{ opacity: 0 }}
@@ -27,13 +27,11 @@ export default function Home_about() {
           transition={{ duration: 1 }}
         >
           Say goodbye to the uncertainty of self-diagnosis and endless internet
-          searches. Our revolutionary platform utilizes advanced AI algorithms
-          to accurately diagnose health conditions based on your symptoms or
-          even a simple picture.
+          searches. .
         </motion.p>
-        <div className="m-[2rem]  flex  md:justify-between justify-center flex-col items-center gap-[2rem] flex-wrap-reverse lg:flex-nowrap ">
-          <div className="flex flex-row justify-center items-center flex-wrap  glass_one rounded-[2rem] ">
-            <div className="text-[#ffffff] text-center glow m-[2rem] text-[1.3rem] md:w-[50%] w-[90%]">
+        <div className="m-[2rem]  flex  md:justify-between justify-center flex-col items-center gap-[2rem]  ">
+          <div className="flex lg:flex-row flex-col lg:justify-between justify-center items-center   glass_one rounded-[2rem]">
+            <div className="text-[#ffffff] text-center glow m-[2rem] text-[1.3rem] md:w-[50%] w-[90%] ">
               <p>
                 Perfectly analyse the image and provide the best medical support
               </p>
@@ -42,7 +40,7 @@ export default function Home_about() {
                 <button className="underline">Try it out</button>
               </span>
             </div>
-            <div className="md:w-[30rem]">
+            <div className="lg:w-[30rem] ">
               <Carousel
                 infiniteLoop={true}
                 autoPlay={true}
@@ -85,8 +83,8 @@ export default function Home_about() {
               </Carousel>
             </div>
           </div>
-          <div className="flex flex-row md:justify-between justify-center items-center flex-wrap  glass_one rounded-[2rem] ">
-            <div className="md:w-[30rem]">
+          <div className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center items-center   glass_one rounded-[2rem]">
+            <div className="lg:w-[30rem]">
               <Carousel
                 infiniteLoop={true}
                 autoPlay={true}
@@ -128,7 +126,7 @@ export default function Home_about() {
           </div>
         </div>
         <motion.p
-          className="text-[1.5rem] italic text-[#ffffff] text-center w-screen mt-[1.5rem] para"
+          className="text-[1.5rem] italic text-[#ffffff] text-center w-screen mt-[1.5rem] z-0"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
