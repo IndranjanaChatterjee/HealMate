@@ -87,6 +87,9 @@ a:hover .hov {
 .f {
   animation: animate 2s linear infinite alternate-reverse;
 }
+.leftSection {
+  margin-right: auto;
+}
 @keyframes animate {
   from {
     bottom: 0;
