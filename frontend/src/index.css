@@ -80,6 +80,9 @@ a:hover .hov {
   box-shadow: 1px 2px 10px 5px #00ff29;
   border-radius: 1rem;
 }
+.glow{
+  text-shadow: 5px 5px 7px #89ea99;
+}
 
 .f {
   animation: animate 2s linear infinite alternate-reverse;
@@ -127,7 +130,7 @@ a:hover .hov {
   animation-duration: 2s;
   animation-direction: alternate-reverse;
   animation-iteration-count: infinite;
-  animation-delay: 3.5s;
+  animation-delay: 3s;
 }
 @keyframes hoverAnimation {
   from {
@@ -143,6 +146,18 @@ a:hover .hov {
   background: linear-gradient(
     to bottom right,
     rgba(0,255,41,0.6),
+    rgba(35, 183, 64,0)
+  );
+  
+}
+.glass_one {
+  box-shadow: 1px 2px 10px 15px black;
+  transform: translateZ(1000px);
+  backdrop-filter: blur(10px) saturate(200%);
+  -webkit-backdrop-filter: blur(10px) saturate(200%);
+  background: linear-gradient(
+    to bottom right,
+    rgba(5, 235, 43, 0.5),
     rgba(35, 183, 64,0)
   );
   
