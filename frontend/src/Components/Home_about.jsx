@@ -31,7 +31,7 @@ export default function Home_about() {
           to accurately diagnose health conditions based on your symptoms or
           even a simple picture.
         </motion.p>
-        <div className="m-[2rem]  flex  xl:justify-between justify-center flex-col items-center gap-[2rem] flex-wrap-reverse lg:flex-nowrap ">
+        <div className="m-[2rem]  flex  md:justify-between justify-center flex-col items-center gap-[2rem] flex-wrap-reverse lg:flex-nowrap ">
           <div className="flex flex-row justify-center items-center flex-wrap  glass_one rounded-[2rem] ">
             <div className="text-[#ffffff] text-center glow m-[2rem] text-[1.3rem] md:w-[50%] w-[90%]">
               <p>
@@ -42,7 +42,7 @@ export default function Home_about() {
                 <button className="underline">Try it out</button>
               </span>
             </div>
-            <div className="xl:w-[30rem]">
+            <div className="md:w-[30rem]">
               <Carousel
                 infiniteLoop={true}
                 autoPlay={true}
@@ -84,8 +84,8 @@ export default function Home_about() {
               </Carousel>
             </div>
           </div>
-          <div className="flex flex-row xl:justify-between justify-center items-center flex-wrap  glass_one rounded-[2rem] ">
-            <div className="xl:w-[30rem]">
+          <div className="flex flex-row md:justify-between justify-center items-center flex-wrap  glass_one rounded-[2rem] ">
+            <div className="md:w-[30rem]">
               <Carousel
                 infiniteLoop={true}
                 autoPlay={true}
