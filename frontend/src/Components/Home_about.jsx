@@ -62,6 +62,7 @@ export default function Home_about() {
                     src={pic2}
                     className="rounded-[1rem] w-[15rem] h-[30rem]"
                   />
+                  
                 </div>
                 <div>
                   <img
