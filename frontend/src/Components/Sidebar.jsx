@@ -17,7 +17,7 @@ export default function Sidebar() {
             
             type:"spring",
             stiffness:20,
-            
+             
            }
         },
         closed:
