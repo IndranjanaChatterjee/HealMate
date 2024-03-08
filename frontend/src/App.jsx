@@ -10,7 +10,7 @@ import Teams from './Components/Teams'
 import Home from './Components/Home'
 import Picturesearch from './Components/Picturesearch'
 import Picsearch from './Components/Picsearch'
-
+import Error from './Components/Error'
 function App() {
   
 
@@ -33,6 +33,7 @@ function App() {
         <Route path='/pics' element={<Picturesearch/>} />
         <Route path='/disease' element={<Diseases_search />} />
         <Route path='/teams' element={<Teams/>} />
+        <Route path="/error" element={<Error/>} />
           
         
       </Routes>
