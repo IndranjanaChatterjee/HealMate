@@ -18,11 +18,11 @@ export default function Picturesearch() {
 
   return (
     <section className="min-h-screen flex justify-start md:justify-center items-center w-screen ">
-      <div className="burger xl:hidden block">
+      <div className="burger md:hidden block">
         <Sidebar/>
       </div>
       <div className="flex justify-center py-[0.7rem] items-center md:justify-center  w-screen h-screen bg-dark  overflow-x-hidden relative z-0 ">
-                 <div className="  bg-sap left-0    w-[20rem] text-[10px]  text-[16px] h-full rounded-tr-[2rem] rounded-br-[2rem] flex flex-col justify-center items-center relative z-20 hidden xl:block">
+                 <div className="  bg-sap left-0    w-[20rem] text-[10px]  text-[16px] h-full rounded-tr-[2rem] rounded-br-[2rem] flex flex-col justify-center items-center relative z-20 hidden md:block">
            <div className="w-full grid place-items-center">
             <img
               src={avatar}
@@ -73,18 +73,18 @@ export default function Picturesearch() {
                   </li>
                 </ul>
               </div>
-              <div className=" lg:w-[50%]  md:w-[70%] w-[90%] flex justify-between items-center   md:mt-2  animate__animated animate__slideInLeft">
+              <div className=" lg:w-[50%]  md:w-[70%] w-[90%] flex justify-between  gap-[1rem] items-center    animate__animated animate__slideInLeft  flex-wrap">
                 <label
                   htmlFor="upload"
-                  className="w-[70px] h-10 md:w-[170px] md:h-12 bg-sap2 rounded-xl px-3 flex mr-5  hover:bg-sap "
+                  className="w-[10rem]    bg-sap2 rounded-xl px-3 flex justify-center items-center  hover:bg-sap "
                 >
                   <input type="file" id="upload" style={{ display: "none" }} />
-                  <img src={browse} alt="Browse" />
-                  <p className="text-light mt-2 mx-2 hidden md:block">Browse</p>
+                  <img src={browse} alt="Browse" className="w-[3rem]"/>
+                  <p className="text-light  ">Browse</p>
                 </label>
                 <label
                   htmlFor="capture"
-                  className="md:w-[170px] md:h-12 w-[70px] h-10 bg-sap2 rounded-xl px-3 flex mr-5  hover:bg-sap "
+                  className="w-[10rem]      bg-sap2 rounded-xl px-3 flex  hover:bg-sap "
                 >
                   <input
                     type="file"
@@ -92,17 +92,18 @@ export default function Picturesearch() {
                     accept="image/*"
                     capture="user"
                     style={{ display: "none" }}
+
                   />
-                  <img src={cap} alt="Capture" />
-                  <p className="text-light mt-2 mx-2 md:block hidden">
+                  <img src={cap} alt="Capture" className="w-[3rem]"/>
+                  <p className="text-light mt-2 mx-2 ">
                     Capture
                   </p>
                 </label>
-                <div className="relative mr-5">
+                <div className="relative ">
                   <img
                     src={loc}
                     alt="Location"
-                    className="absolute left-0 top-1/2 transform -translate-y-1/2"
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 "
                     style={{
                       width: "30px",
                       height: "30px",
@@ -113,12 +114,12 @@ export default function Picturesearch() {
                   <input
                     type="text"
                     placeholder="Location.."
-                    className="md:w-[150px] w-[100px] ml-1 md:h-12 h-10 bg-sap2 rounded-xl px-3 pl-10 md:pb-2 placeholder-light text-light  hover:bg-sap text-[10px]  md:text-[16px] "
+                    className="w-[10rem]      md:h-12 h-10 bg-sap2 rounded-xl px-3 pl-10 md:pb-2 placeholder-light text-light  hover:bg-sap text-[10px]  md:text-[16px] "
                   />
                 </div>
                 <button
                   id="submit"
-                  className="md:w-[50px] w-[30px] rounded-full bg-sap2 hover:bg-sap "
+                  className="md:w-[50px] w-[40px] rounded-full bg-sap2 hover:bg-sap "
                 >
                   <img src={generate} alt="Generate" />
                 </button>
@@ -127,7 +128,7 @@ export default function Picturesearch() {
           
         </div>
       </div>
-      <div className="down fixed bottom-[1rem] w-[100%] flex justify-center items-center">
+      <div className="down fixed bottom-[1rem] w-[100%] flex justify-center items-center hidden">
         <Bottomnav />
       </div>
       

@@ -34,7 +34,7 @@ export default function Sidebar() {
     }
   return (
     <motion.div className='flex z-[999] flex-col backdrop-blur-lg justify-center items-center hover:bg-red-500 justify-center bg-[#ffffff] text-[#000000] fixed top-0 left-0 py-[2rem]' animate={open?"open":"closed"}>
-        <motion.div className='bg-[#ffffff] hover:bg-red-500 text-[#000000] backdrop-blur-lg fixed top-0 left-[1px] w-[20rem] h-[100vh]' variants={variants}>
+        <motion.div className='bg-sap hover:bg-red-500 text-[#000000] backdrop-blur-lg fixed top-0 left-[1px] w-[20rem] h-[100vh]' variants={variants}>
         
            <div className="w-full grid place-items-center">
             <img
