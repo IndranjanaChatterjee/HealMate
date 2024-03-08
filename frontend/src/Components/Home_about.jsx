@@ -125,7 +125,7 @@ export default function Home_about() {
             </div>
           </div>
         </div>
-        <motion.p
+        <motion.div
           className="text-[1.5rem] italic text-[#ffffff] text-center w-screen mt-[1.5rem] z-0"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -135,7 +135,7 @@ export default function Home_about() {
             Join us and discover the power of AI-Powered Diagnosis ,redefining
             the way you approach wellness.{"  "}
           </Marquee>
-        </motion.p>
+        </motion.div>
       </div>
     </div>
   );
