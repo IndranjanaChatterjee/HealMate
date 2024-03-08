@@ -107,10 +107,10 @@ def get_image_diagnosis():
     image = request.files.get('image')  # Access image as a file object
     location = request.form.get('location')
     generate = Generate(gemini_api_key)
-    text = generate.get_image_list(location,image)
+    text = generate.get_image_list(location,image,user_email)
     #List inserting into database will go here
     if text:
-        return jsonify({'status': 'success', 'data': {"disease":text[3],"names":text[0],"address":text[1],"contact":text[2]}}), 200
+        return jsonify({'status': 'success', 'data': {"disease":text}}), 200
     else:
         return jsonify({'status': 'error', 'message': 'Could not generate text'}), 500
 

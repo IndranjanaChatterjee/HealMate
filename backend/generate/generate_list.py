@@ -3,6 +3,7 @@ import os
 from flask import jsonify
 import PIL.Image
 from database.firebaseConn import Firebase
+from database.database import Database
 import PIL
 import datetime
 import random
@@ -23,6 +24,7 @@ class Generate:
         self.modelImage = genai.GenerativeModel('gemini-pro-vision')
         self.GEMINI_TEXT_PROMPT = os.environ.get("GEMINI_TEXT_PROMPT")
         self.GEMINI_IMAGE_PROMPT = os.environ.get("GEMINI_IMAGE_PROMPT")
+        self.database = Database()
     
     def cloud_upload(self, full_save_path,new_name):
         firebase = Firebase()
@@ -80,7 +82,7 @@ class Generate:
         current_datetime = datetime.datetime.now().strftime("%m-%d-%Y_%H-%M-%S")
         new_name = f"{random_string}{current_datetime}{extension}"
         return new_name
-    def get_image_list(self,location,image):
+    def get_image_list(self,location,image, user_email):
         IMG_PROMPT = os.environ.get("GEMINI_IMAGE_GEN_PROMPT")
         image_path = image.filename
         new_name = self.generate_random_name(image_path)
@@ -94,9 +96,10 @@ class Generate:
         print(r_image.text)
         prompt = eval(f'f"{self.GEMINI_IMAGE_PROMPT}"')
         response = self.modelText.generate_content(prompt)
-        self.cloud_delete(new_name)
+        self.cloud_delete(new_name) 
         names, addresses, mobiles = self.parse_response(response.text)
-        generated_data = [names, addresses, mobiles, r_image.text]
+
+        generated_data = self.database.update_list(user_email, r_image.text, names, addresses, mobiles)
         return generated_data
     def get_text_list(self,location,symptoms):
         prompt = eval(f'f"{self.GEMINI_TEXT_PROMPT}"')
