@@ -17,7 +17,7 @@ export default function Picturesearch() {
   };
 
   return (
-    <section className="min-h-screen flex justify-start md:justify-center items-center w-screen ">
+    <section className="min-h-[110vh] lg:min-h-screen flex justify-start md:justify-center items-center w-screen bg-dark">
       <div className="burger md:hidden block">
         <Sidebar/>
       </div>
@@ -128,7 +128,7 @@ export default function Picturesearch() {
           
         </div>
       </div>
-      <div className="down fixed bottom-[1rem] w-[100%] flex justify-center items-center hidden">
+      <div className="down fixed bottom-[1rem] w-[100%] flex justify-center items-center ">
         <Bottomnav />
       </div>
       
