@@ -15,29 +15,30 @@ import mic from "../assets/mic.png";
 import { Typewriter } from "react-simple-typewriter";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
+import { NavLink } from "react-router-dom";
 
 export default function Home_about() {
   return (
     <div className="box">
       <div className="  min-h-[110vh] sm:w-[80%] w-full flex flex-col justify-center items-center m-auto ">
         <motion.p
-          className="text-[#ffffff] text-center w-full mb-[1.5rem] para text-[1.3rem]"
+          className="text-[#ffffff] text-center w-full mb-[1.5rem] para md:text-[1.3rem] text-[1rem]"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
-          Say goodbye to the uncertainty of self-diagnosis and endless internet
-          searches. .
+          Uncertain symptoms? Snap a picture for a possible condition match, then find nearby doctors for the best next step!
+
         </motion.p>
-        <div className="m-[2rem]  flex  md:justify-between justify-center flex-col items-center gap-[2rem]  ">
+        <div className="m-[1rem]  flex  md:justify-between justify-center flex-col items-center gap-[2rem]  ">
           <div className="flex lg:flex-row flex-col lg:justify-between justify-center items-center   glass_one rounded-[2rem]">
-            <div className="text-[#ffffff] text-center glow m-[2rem] text-[1.3rem] md:w-[50%] w-[90%] ">
+            <div className="text-[#ffffff] text-center glow m-[0.5rem] text-[1.3rem] md:w-[50%] w-[90%] ">
               <p>
                 Perfectly analyse the image and provide the best medical support
               </p>
               <span className="flex justify-center items-center ">
                 <img src={camera} alt="img" className="w-[4rem]" />
-                <button className="underline">Try it out</button>
+                <NavLink to="/pics" className="underline">Try it out</NavLink>
               </span>
             </div>
             <div className="lg:w-[30rem] ">
@@ -83,7 +84,7 @@ export default function Home_about() {
               </Carousel>
             </div>
           </div>
-          <div className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center items-center   glass_one rounded-[2rem]">
+          <div className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center items-center max-w-[80rem]  glass_one rounded-[0.7rem]">
             <div className="lg:w-[30rem]">
               <Carousel
                 infiniteLoop={true}
@@ -120,7 +121,7 @@ export default function Home_about() {
               </p>
               <span className="flex justify-center items-center ">
                 <img src={camera} alt="img" className="w-[4rem]" />
-                <button className="underline">Try it out</button>
+                <NavLink to="/disease" className="underline">Try it out</NavLink>
               </span>
             </div>
           </div>
