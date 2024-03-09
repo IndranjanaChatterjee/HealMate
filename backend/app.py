@@ -8,7 +8,7 @@ from flask import Flask, jsonify,request, session
 from flask_cors import CORS
 from flask_session import Session
 from generate.generate_list import Generate
-import PIL
+
 #Working Code
 gemini_api_key = os.environ.get("GEMINI_API_KEY")
 FLASK_SECRET_KEY = os.environ.get("FLASK_SECRET_KEY")
@@ -79,13 +79,14 @@ def get_text_diagnosis():
     Args: None
     
     Returns:
-        JSON: JSON containing the markdown upon successful generation.
+        JSON: JSON containing the list of all nearby doctors
     """
     user_email = request.args.get('email')
+    print(f"============EMAIL : {user_email}==========")
     symptoms = request.args.get('symptoms')
     location=request.args.get('location')
     generate = Generate(gemini_api_key)
-    text = generate.get_text_list(location,symptoms)
+    text = generate.get_text_list(location,symptoms,user_email)
     #List inserting into database will go here
     if text:
         return jsonify({'status': 'success', 'data': text}), 200

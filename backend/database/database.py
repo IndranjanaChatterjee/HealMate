@@ -25,7 +25,7 @@ class Database:
                 'name': name,
                 'email': email,
                 'profile_pic': user_image,
-                'doctor_lists': {}
+                'doctor_lists': []
             }
             self.COLLECTION.insert_one(new_user)
             return None  # User does not exist, no session token generated
@@ -39,26 +39,14 @@ class Database:
         user = self.COLLECTION.find_one(user_query)
 
         if user:
-            # If the disease doesn't exist in the user's doctor_list, create a new entry
-            if disease not in user['doctor_lists']:
-                user['doctor_lists'][disease] = {'names': [], 'addresses': [], 'mobiles': []}
-
-            # Update the lists and ensure the new entry is at the start
-            user['doctor_lists'][disease]['names'] = names + user['doctor_lists'][disease]['names']
-            user['doctor_lists'][disease]['addresses'] = addresses + user['doctor_lists'][disease]['addresses']
-            user['doctor_lists'][disease]['mobiles'] = mobiles + user['doctor_lists'][disease]['mobiles']
-
-            # Move the new disease entry to the start of the doctor_list
-            user['doctor_lists'] = {disease: user['doctor_lists'][disease], **user['doctor_lists']}
-
-            # Update the user document in the collection
+            new_doctor_entry = {'disease': disease, 'names': names, 'addresses': addresses, 'mobiles': mobiles}
+            user['doctor_lists'] = [new_doctor_entry] + user['doctor_lists']
             self.COLLECTION.update_one(user_query, {'$set': {'doctor_lists': user['doctor_lists']}})
-
-            # Return the updated doctor's list for the specified disease
             return user['doctor_lists']
         else:
             print(f"User with email {user_email} not found.")
             return None
+
 
 # Example usage:
 """ db = Database()
@@ -87,3 +75,10 @@ mobiles = ["+91 9804703838",
             "+91 9830218155"]
 diseases_list = db.update_list(user_email, disease, names, addresses, mobiles)
 print(diseases_list) """
+""" db = Database()
+session_token = db.user_login("Agnik Bakshi", "agnik@gmail.com", "https://example.com/profile_pic.jpg")
+
+if session_token:
+    print(f"User logged in. Session token: {session_token}")
+else:
+    print("New user registered.") """

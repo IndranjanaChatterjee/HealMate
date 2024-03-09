@@ -5,6 +5,13 @@ from flask import jsonify
 
 class Firebase:
     def __init__(self):
+        """ 
+        Contructor to initialise the global variables. It configures the cloud setup.
+
+        Args: None
+        
+        Returns: None            
+        """
         self.FIREBASE_API_KEY = os.environ.get("FIREBASE_API_KEY")
         self.FIREBASE_AUTH_DOMAIN = os.environ.get("FIREBASE_AUTH_DOMAIN")
         self.FIREBASE_DATABASE_URL = os.environ.get("FIREBASE_DATABASE_URL")
@@ -28,6 +35,13 @@ class Firebase:
         self.cloud_storage_path = '/' 
     
     def upload_files(self,local_image_path, file_name):
+        """ 
+        Function to upload the image to the Firebase Cloud
+
+        Args: local_image_path :str, file_name :str
+        
+        Returns: JSON regarding status of function
+        """
         try:
             print(self.storage)
             self.storage.child(f"{self.cloud_storage_path}{file_name}").put(local_image_path)
@@ -37,6 +51,13 @@ class Firebase:
         except Exception as e:
             return jsonify({"status_code": 500,"message": "Error Uploading image"}),500
     def delete_files(self,local_image_path):
+        """ 
+        Function to delete the image to the Firebase Cloud
+
+        Args: local_image_path :str
+        
+        Returns: JSON regarding status of function
+        """
         try:
             self.storage.delete(token=None, name=f"{local_image_path}")
             print("Image deleted successfully.")
