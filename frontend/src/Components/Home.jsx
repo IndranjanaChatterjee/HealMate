@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Videosection from './Videosection';
 import Bottomnav from './Bottomnav';
 import Topnav from './Topnav';
@@ -7,10 +7,11 @@ import Footer from './Footer';
 
 
 export default function Home() {
+  
   return (
     <section className='min-h-screen relative w-screen home overflow-x-hidden'>
         <div className='absolute top-0 w-full z-[999]'>
-        <Topnav/>
+        <Topnav />
         </div>
         
         <Videosection/>
