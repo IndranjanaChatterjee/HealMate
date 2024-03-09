@@ -84,10 +84,10 @@ const Diseases_search = () => {
               <div className=" lg:w-[50%]  md:w-[70%] w-[90%] flex justify-center  gap-[1rem] items-center    animate__animated animate__slideInLeft  ">
                 <label
                   htmlFor="upload"
-                  className="md:w-[10rem] w-[8rem] h-8 bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap "
+                  className="md:w-[10rem] w-[8rem] md:h-11 h-8 sm:h-10 bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap "
                 >
                   <input type="file" id="upload" style={{ display: "none" }} />
-                  <img src={symptoms} alt="Browse" className="w-[1.8rem] sm:w-[2rem] md:w-[3rem]"/>
+                  <img src={symptoms} alt="Browse" className="w-[1.8rem] sm:w-[2rem] md:w-[2.5rem]"/>
                   <p className="text-light  text-[0.7rem] xl:text-[1.2rem] md:text-[0.9rem]">Symptoms</p>
                 </label>
                 
