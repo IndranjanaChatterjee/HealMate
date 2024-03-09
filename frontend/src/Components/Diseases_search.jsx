@@ -10,9 +10,25 @@ import logo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import symptoms from "../assets/symptoms.png";
+import { FaBars } from "react-icons/fa"; // Import hamburger icon
+import "animate.css";
+import Loader from "./Loader";
 
 const Diseases_search = () => {
   const [showLeftSection, setShowLeftSection] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Initialize loading state
+
+  // Function to handle the button click
+  const handleSubmitClick = () => {
+    // Set loading state to true when button is clicked
+    setIsLoading(true);
+
+    // Simulate loading time and perform any asynchronous task if needed
+    setTimeout(() => {
+      // After 2000ms (2 seconds), set loading state back to false
+      setIsLoading(false);
+    }, 2000); // Adjust this value according to your actual loading time
+  };
 
   const toggleLeftSection = () => {
     setShowLeftSection(!showLeftSection);
