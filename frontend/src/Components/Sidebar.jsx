@@ -10,13 +10,14 @@ export default function Sidebar() {
     {
         open:{
             clipPath:"circle(1220px at 50px 50px)",
-            backgroundColor:"white",
+            backgroundColor:"#81AB5F",
             opacity:"0.9",
            transition:
            {
             
             type:"spring",
             stiffness:20,
+            duration:0.2,
             
            }
         },
