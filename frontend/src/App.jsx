@@ -1,48 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import Videosection from './Components/Videosection'
-import Bottomnav from './Components/Bottomnav';
-import {Routes, Route, useLocation, Navigate,BrowserRouter} from 'react-router-dom';
-import Diseases_search from './Components/Diseases_search'
+// App.jsx
+import React,{useState} from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { store } from './store';
 
-import Home from './Components/Home'
-import Picturesearch from './Components/Picturesearch'
-import Picsearch from './Components/Picsearch'
-import Error from './Components/Error'
+import Home from './Components/Home';
+import Picturesearch from './Components/Picturesearch';
+import Diseases_search from './Components/Diseases_search';
+import Error from './Components/Error';
+
 function App() {
   
-
   return (
-    <>
-    {/*<section >
-    
-    
-    <Routes>
-        <Route path='/' index element={<Videosection/>}/>
-        
-        
-      </Routes>
-    </section>  */}
-    <section className='main relative'>
-    <BrowserRouter>
-      <Routes>
-        
-        <Route path="/" index element={<Home />}/>
-        <Route path='/pics' element={<Picturesearch/>} />
-        <Route path='/disease' element={<Diseases_search />} />
-        
-        <Route path="/error" element={<Error/>} />
-          
-        
-      </Routes>
-    </BrowserRouter>
-    
-    </section>
-        
-    </>
-  )
+      <section className='main relative'>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              index
+              element={<Home/>}
+            />
+            <Route path='/pics' element={<Picturesearch />} />
+            <Route path='/disease' element={<Diseases_search />} />
+            <Route path="/error" element={<Error />} />
+          </Routes>
+        </Router>
+      </section>
+  );
 }
 
-export default App
+export default App;

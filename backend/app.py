@@ -72,6 +72,7 @@ def login():
 
 
 @app.route('/get_text_diagnosis', methods=['POST','GET'])
+@login_required
 def get_text_diagnosis():
     """ 
     Function to generate and return the list of doctors based on symptoms
@@ -95,6 +96,7 @@ def get_text_diagnosis():
 
 
 @app.route('/get_image_diagnosis', methods=['POST','GET'])
+@login_required
 def get_image_diagnosis():
     """ 
     Function to generate and return the list of doctors based on image given by user
