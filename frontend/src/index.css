@@ -90,6 +90,16 @@ a:hover .hov {
 .leftSection {
   margin-right: auto;
 }
+.error {
+  background: url("../src/assets/errorpage.png");
+  background-size: cover ;
+  background-position: center;
+  font-family: "Roboto Mono", monospace;
+}
+.btn{
+  background: linear-gradient(to right, #215e3d, #03be57b9);
+  box-shadow: 1px 2px 10px 5px #000000;
+}
 @keyframes animate {
   from {
     bottom: 0;
