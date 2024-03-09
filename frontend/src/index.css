@@ -12,6 +12,10 @@ body {
   overflow-x: hidden;
   font-family: "Roboto Mono", monospace;
 }
+.loader {
+  background: url("./assets/back.png");
+  background-size: cover;
+}
 .content {
   font-family: "Roboto Mono", monospace;
   text-shadow: 2px 2px 8px #00ff29;
