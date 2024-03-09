@@ -47,8 +47,8 @@ export default function Picturesearch() {
 
            </div>
            <div className="w-full grid place-items-center">
-            <div className="text-light mb-2">Previous Searches</div>
-            <ul className="list-disc text-light">
+            <div className="text-light mb-2 text-[1.5rem]">Previous Searches</div>
+            <ul className="list-disc text-light text-[1rem]">
               <li>Rickets</li>
               <li>Osteoporosis</li>
               <li>Rickets</li>
@@ -90,6 +90,7 @@ export default function Picturesearch() {
                 <button
                   id="submit"
                   className="md:w-[50px] w-[40px] self-center rounded-full bg-sap2  hover:bg-sap absolute bottom-[0.5rem] right-[1rem] b-shadow"
+                  onClick={handleSubmitClick}
                 >
                   <img src={generate} alt="Generate" />
                 </button>
