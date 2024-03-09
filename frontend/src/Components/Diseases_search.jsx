@@ -12,26 +12,40 @@ import symptoms from "../assets/symptoms.png";
 import { FaBars } from "react-icons/fa"; // Import hamburger icon
 import "animate.css";
 import Loader from "./Loader";
+import axios from "axios";
 
-const Diseases_search = () => {
+const Diseases_search = ({userEmail,userPicture}) => {
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const [showLeftSection, setShowLeftSection] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Initialize loading state
-
-  // Function to handle the button click
-  const handleSubmitClick = () => {
-    // Set loading state to true when button is clicked
+  const [isLoading, setIsLoading] = useState(false);
+  const [image, setImage] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [location, setLocation] = useState('');
+  const [disease, setDisease] = useState('');
+  const [name,setName] = useState([]);
+  const [diagnosis, setDiagnosis] = useState([]);
+  const [getSymptom,setGetSymptom]=useState('');
+  const handleSubmitClick = async() => {
+    console.log(selectedFile)
     setIsLoading(true);
-
-    // Simulate loading time and perform any asynchronous task if needed
-    setTimeout(() => {
-      // After 2000ms (2 seconds), set loading state back to false
+    await axios.get(`${baseURL}/get_text_diagnosis?email=${userEmail}&symptoms=${getSymptom}&location=${location}`).then((res)=>{
+      console.log(res);
+      const newDiagnosis = {
+        disease: res.data.data[0].disease,
+        names: res.data.data[0].names,
+        addresses: res.data.data[0].addresses,
+        mobiles: res.data.data[0].mobiles,
+      };
+      setDiagnosis((prevDiagnosis) => [...prevDiagnosis, newDiagnosis]);
+      setDisease(res.data.data[0].disease);
+      setName(res.data.data[0].names);
       setIsLoading(false);
-    }, 2000); // Adjust this value according to your actual loading time
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
   };
 
-  const toggleLeftSection = () => {
-    setShowLeftSection(!showLeftSection);
-  };
 
   return (
     <>
@@ -55,7 +69,7 @@ const Diseases_search = () => {
            <div className="w-full grid place-items-center">
             <div className="text-light mb-2 text-[1.5rem]">Previous Searches</div>
             <ul className="list-disc text-light text-[1rem]">
-              <li>Rickets</li>
+              <li>{userEmail}</li>
               <li>Osteoporosis</li>
               <li>Rickets</li>
               <li>Osteoporosis</li>
@@ -78,21 +92,27 @@ const Diseases_search = () => {
             <div className="flex flex-col justify-center items-center mx-auto lg:mx-0 mt-10 md:mt-0  w-full">
             
               <div className="relative animate__animated animate__slideInRight  rounded-xl m-7 py-[4rem] pl-4 bg-sap2 lg:w-[50%]  md:w-[70%] w-[90%]">
-                <div className="text-light mb-2">
+              {diagnosis.map((item, index) => (
+                    <div key={index}>
+                      <div className="text-light mb-2">
                   Disease based on your image :-
                 </div>
-                <li className="ml-5 list-disc text-light">Malaria</li>
+                <li className="ml-5 list-disc text-light">{item.disease}</li>
                 <div className="ml-5 mt-6 text-light">
                   List of doctors based on your Location
                 </div>
-                <ul className="ml-5 list-decimal text-light pl-6">
-                  <li className="mt-2">
-                    <div>Name:</div> <div>Phone No:</div> <div>Address:</div>
-                  </li>
-                  <li className="mt-2">
-                    <div>Name:</div> <div>Phone No:</div> <div>Address:</div>
-                  </li>
-                </ul>
+                      
+                      <ul className="ml-5 list-decimal overflow-y-auto h-[10rem] text-light px-[2rem]">
+                        {item.names.map((name, idx) => (
+                          <li key={idx} className="mt-2">
+                            <div>Name: Dr. {name}</div>{" "}
+                            <div>Phone No: {item.mobiles[idx]}</div>{" "}
+                            <div>Address: {item.addresses[idx]}</div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 <button
                   id="submit"
                   className="md:w-[50px] w-[40px] self-center rounded-full bg-sap2  hover:bg-sap absolute bottom-[0.5rem] right-[1rem] b-shadow"
@@ -102,14 +122,26 @@ const Diseases_search = () => {
                 </button>
               </div>
               <div className=" lg:w-[50%]  md:w-[70%] w-[90%] flex justify-center  gap-[1rem] items-center    animate__animated animate__slideInLeft  ">
-                <label
-                  htmlFor="upload"
-                  className="md:w-[10rem] w-[8rem] md:h-12 h-8 sm:h-10 bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap "
-                >
-                  <input type="file" id="upload" style={{ display: "none" }} />
-                  <img src={symptoms} alt="Browse" className="w-[1.8rem] sm:w-[2rem] md:w-[2.5rem]"/>
-                  <p className="text-light  text-[0.7rem] xl:text-[1.2rem] md:text-[0.9rem]">Symptoms</p>
-                </label>
+              <div className="relative ">
+                  <img
+                    src={symptoms}
+                    alt="Symptoms"
+                    className="absolute left-0 top-1/2 transform -translate-y-1/2 "
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      marginLeft: "10px",
+                      marginRight: "2px",
+                    }}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Symptoms"
+                    value={getSymptom}
+                    onChange={(e)=>{setGetSymptom(e.target.value)}}
+                    className="md:w-[10rem] w-[8rem]    md:h-12 h-8 sm:h-10 bg-sap2 rounded-xl px-3 pl-10 md:pb-2 placeholder-light text-light  hover:bg-sap text-[10px]  md:text-[16px] "
+                  />
+                </div>
                 
                 <div className="relative ">
                   <img
@@ -126,6 +158,7 @@ const Diseases_search = () => {
                   <input
                     type="text"
                     placeholder="Location.."
+                    onChange={(e)=>{setLocation(e.target.value)}}
                     className="md:w-[10rem] w-[8rem]    md:h-12 h-8 sm:h-10 bg-sap2 rounded-xl px-3 pl-10 md:pb-2 placeholder-light text-light  hover:bg-sap text-[10px]  md:text-[16px] "
                   />
                 </div>

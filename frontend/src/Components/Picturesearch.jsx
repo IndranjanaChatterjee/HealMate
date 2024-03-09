@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaBars } from "react-icons/fa"; // Import hamburger icon
+import { FaBars } from "react-icons/fa"; 
 import Bottomnav from "./Bottomnav";
 import avatar from "../assets/avatar.png";
 import loc from "../assets/loc-removebg-preview.png";
@@ -11,10 +11,10 @@ import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Loader from "./Loader";
 import axios from "axios";
-export default function Picturesearch({userEmail}) {
+export default function Picturesearch({userEmail,userPicture}) {
   const baseURL = import.meta.env.VITE_BASE_URL;
   const [showLeftSection, setShowLeftSection] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // Initialize loading state
+  const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [location, setLocation] = useState('');
@@ -25,9 +25,7 @@ export default function Picturesearch({userEmail}) {
     const file = e.target.files[0];
     setSelectedFile(file);
   };
-  // Function to handle the button click
   const handleSubmitClick = async() => {
-    // Set loading state to true when button is clicked
     console.log(selectedFile)
     setIsLoading(true);
     const formData = new FormData();
@@ -54,8 +52,6 @@ export default function Picturesearch({userEmail}) {
     .catch((err)=>{
       console.log(err)
     })
-    // Simulate loading time and perform any asynchronous task if needed
-     // Adjust this value according to your actual loading time
   };
 
   return (
@@ -63,9 +59,7 @@ export default function Picturesearch({userEmail}) {
       {isLoading ? (
         <Loader />
       ) : (
-        diagnosis.map((item, index) => (
     <section className="relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen bg-dark">
-      
       <div className="burger md:hidden block">
         <Sidebar/>
       </div>
@@ -73,8 +67,8 @@ export default function Picturesearch({userEmail}) {
                  <div className="  bg-sap2 left-0    w-[20rem] text-[10px]   h-full rounded-tr-[2rem] rounded-br-[2rem]  flex-col justify-center items-center relative z-20 hidden md:block">
            <div className="w-full grid place-items-center">
             <img
-              src={avatar}
-              className="w-[80px] h-[80px]  mt-[50px] mb-[35px]"
+              src={userPicture}
+              className="w-[80px] rounded-full h-[80px]  mt-[50px] mb-[35px]"
               alt="Avatar"
             />
 
@@ -106,7 +100,7 @@ export default function Picturesearch({userEmail}) {
             
               <div className="relative animate__animated animate__slideInRight  rounded-xl m-7 py-[4rem] pl-4 bg-sap2 lg:w-[50%]  md:w-[70%] w-[90%]">
                 
-                
+                {diagnosis.map((item, index) => (
                     <div key={index}>
                       <div className="text-light mb-2">
                   Disease based on your image :-
@@ -119,14 +113,14 @@ export default function Picturesearch({userEmail}) {
                       <ul className="ml-5 list-decimal overflow-y-auto h-[10rem] text-light px-[2rem]">
                         {item.names.map((name, idx) => (
                           <li key={idx} className="mt-2">
-                            <div>Name: {name}</div>{" "}
+                            <div>Name: Dr. {name}</div>{" "}
                             <div>Phone No: {item.mobiles[idx]}</div>{" "}
                             <div>Address: {item.addresses[idx]}</div>
                           </li>
                         ))}
                       </ul>
                     </div>
-                  
+                  ))}
                 <button
                   id="submit"
                   className="md:w-[50px] w-[40px] self-center rounded-full bg-sap2  hover:bg-sap absolute bottom-[0.5rem] right-[1rem] b-shadow"
@@ -193,9 +187,7 @@ export default function Picturesearch({userEmail}) {
             <Bottomnav />
           </div>
           </div>
-          
         </section>
-        ))
       )}
     </>
   );

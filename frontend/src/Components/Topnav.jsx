@@ -4,7 +4,7 @@ import { Link, useNavigate, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import {useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-export default function Topnav({userEmail,setUserEmail}) {
+export default function Topnav({userEmail,setUserEmail,userPicture, setUserPicture}) {
   const navigate = useNavigate();
   const baseURL = import.meta.env.VITE_BASE_URL;
   const [show,setShow] = useState("");
@@ -26,6 +26,7 @@ export default function Topnav({userEmail,setUserEmail}) {
                 setIsLoggedIn(true);
                 setShow(res.data.user.picture);
                 setUserEmail(res.data.user.email);
+                setUserPicture(res.data.user.picture);
             } else {
                 navigate('/error');
             }
