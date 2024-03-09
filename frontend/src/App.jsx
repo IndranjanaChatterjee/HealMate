@@ -6,7 +6,7 @@ import Videosection from './Components/Videosection'
 import Bottomnav from './Components/Bottomnav';
 import {Routes, Route, useLocation, Navigate,BrowserRouter} from 'react-router-dom';
 import Diseases_search from './Components/Diseases_search'
-import Teams from './Components/Teams'
+
 import Home from './Components/Home'
 import Picturesearch from './Components/Picturesearch'
 import Picsearch from './Components/Picsearch'
@@ -32,7 +32,7 @@ function App() {
         <Route path="/" index element={<Home />}/>
         <Route path='/pics' element={<Picturesearch/>} />
         <Route path='/disease' element={<Diseases_search />} />
-        <Route path='/teams' element={<Teams/>} />
+        
         <Route path="/error" element={<Error/>} />
           
         
