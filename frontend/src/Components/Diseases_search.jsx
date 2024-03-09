@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FaBars } from "react-icons/fa"; // Import hamburger icon
 import Bottomnav from "./Bottomnav";
 import avatar from "../assets/avatar.png";
 import loc from "../assets/loc-removebg-preview.png";
@@ -10,15 +9,35 @@ import logo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import symptoms from "../assets/symptoms.png";
+import { FaBars } from "react-icons/fa"; // Import hamburger icon
+import "animate.css";
+import Loader from "./Loader";
 
 const Diseases_search = () => {
   const [showLeftSection, setShowLeftSection] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Initialize loading state
+
+  // Function to handle the button click
+  const handleSubmitClick = () => {
+    // Set loading state to true when button is clicked
+    setIsLoading(true);
+
+    // Simulate loading time and perform any asynchronous task if needed
+    setTimeout(() => {
+      // After 2000ms (2 seconds), set loading state back to false
+      setIsLoading(false);
+    }, 2000); // Adjust this value according to your actual loading time
+  };
 
   const toggleLeftSection = () => {
     setShowLeftSection(!showLeftSection);
   };
 
   return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
     <section className="relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen bg-dark">
       <div className="burger md:hidden block">
         <Sidebar/>
@@ -77,6 +96,7 @@ const Diseases_search = () => {
                 <button
                   id="submit"
                   className="md:w-[50px] w-[40px] self-center rounded-full bg-sap2  hover:bg-sap absolute bottom-[0.5rem] right-[1rem] b-shadow"
+                  onClick={handleSubmitClick}
                 >
                   <img src={generate} alt="Generate" />
                 </button>
@@ -84,10 +104,10 @@ const Diseases_search = () => {
               <div className=" lg:w-[50%]  md:w-[70%] w-[90%] flex justify-center  gap-[1rem] items-center    animate__animated animate__slideInLeft  ">
                 <label
                   htmlFor="upload"
-                  className="md:w-[10rem] w-[8rem] h-8 bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap "
+                  className="md:w-[10rem] w-[8rem] md:h-12 h-8 sm:h-10 bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap "
                 >
                   <input type="file" id="upload" style={{ display: "none" }} />
-                  <img src={symptoms} alt="Browse" className="w-[1.8rem] sm:w-[2rem] md:w-[3rem]"/>
+                  <img src={symptoms} alt="Browse" className="w-[1.8rem] sm:w-[2rem] md:w-[2.5rem]"/>
                   <p className="text-light  text-[0.7rem] xl:text-[1.2rem] md:text-[0.9rem]">Symptoms</p>
                 </label>
                 
@@ -120,6 +140,8 @@ const Diseases_search = () => {
       </div>
       
     </section>
+    )}
+    </>
   );
 };
 

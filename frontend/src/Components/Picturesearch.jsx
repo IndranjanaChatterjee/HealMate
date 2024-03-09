@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FaBars } from "react-icons/fa"; // Import hamburger icon
 import Bottomnav from "./Bottomnav";
 import avatar from "../assets/avatar.png";
@@ -9,14 +9,29 @@ import generate from "../assets/arrow-removebg-preview.png";
 import logo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import Loader from "./Loader";
+
 export default function Picturesearch() {
   const [showLeftSection, setShowLeftSection] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // Initialize loading state
 
-  const toggleLeftSection = () => {
-    setShowLeftSection(!showLeftSection);
+  // Function to handle the button click
+  const handleSubmitClick = () => {
+    // Set loading state to true when button is clicked
+    setIsLoading(true);
+
+    // Simulate loading time and perform any asynchronous task if needed
+    setTimeout(() => {
+      // After 2000ms (2 seconds), set loading state back to false
+      setIsLoading(false);
+    }, 2000); // Adjust this value according to your actual loading time
   };
 
   return (
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
     <section className="relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen bg-dark">
       <div className="burger md:hidden block">
         <Sidebar/>
@@ -32,8 +47,8 @@ export default function Picturesearch() {
 
            </div>
            <div className="w-full grid place-items-center">
-            <div className="text-light mb-2">Previous Searches</div>
-            <ul className="list-disc text-light">
+            <div className="text-light mb-2 text-[1.5rem]">Previous Searches</div>
+            <ul className="list-disc text-light text-[1rem]">
               <li>Rickets</li>
               <li>Osteoporosis</li>
               <li>Rickets</li>
@@ -75,6 +90,7 @@ export default function Picturesearch() {
                 <button
                   id="submit"
                   className="md:w-[50px] w-[40px] self-center rounded-full bg-sap2  hover:bg-sap absolute bottom-[0.5rem] right-[1rem] b-shadow"
+                  onClick={handleSubmitClick}
                 >
                   <img src={generate} alt="Generate" />
                 </button>
@@ -126,13 +142,14 @@ export default function Picturesearch() {
                 
               </div>
             </div>
-          
-        </div>
-      </div>
-      <div className="down fixed bottom-[1rem] w-[100%] flex justify-center items-center ">
-        <Bottomnav />
-      </div>
-      
-    </section>
+          </div>
+          {/* Bottom navigation */}
+          <div className="down fixed bottom-[1rem] w-[100%] flex justify-center items-center">
+            <Bottomnav />
+          </div>
+          </div>
+        </section>
+      )}
+    </>
   );
 }
