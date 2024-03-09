@@ -10,21 +10,52 @@ import logo from "../assets/Logo.png";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Loader from "./Loader";
-
-export default function Picturesearch() {
+import axios from "axios";
+export default function Picturesearch({userEmail}) {
+  const baseURL = import.meta.env.VITE_BASE_URL;
   const [showLeftSection, setShowLeftSection] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // Initialize loading state
-
+  const [image, setImage] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [location, setLocation] = useState('');
+  const [disease, setDisease] = useState('');
+  const [name,setName] = useState([]);
+  const [diagnosis, setDiagnosis] = useState([]);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+  };
   // Function to handle the button click
-  const handleSubmitClick = () => {
+  const handleSubmitClick = async() => {
     // Set loading state to true when button is clicked
+    console.log(selectedFile)
     setIsLoading(true);
-
-    // Simulate loading time and perform any asynchronous task if needed
-    setTimeout(() => {
-      // After 2000ms (2 seconds), set loading state back to false
+    const formData = new FormData();
+    formData.append('user_email', userEmail);
+    formData.append('image', selectedFile);
+    formData.append('location', location);
+    await axios.post(`${baseURL}/get_image_diagnosis`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    }).then((res)=>{
+      console.log(res);
+      const newDiagnosis = {
+        disease: res.data.data.disease[0].disease,
+        names: res.data.data.disease[0].names,
+        addresses: res.data.data.disease[0].addresses,
+        mobiles: res.data.data.disease[0].mobiles,
+      };
+      setDiagnosis((prevDiagnosis) => [...prevDiagnosis, newDiagnosis]);
+      setDisease(res.data.data.disease[0].disease);
+      setName(res.data.data.disease[0].names);
       setIsLoading(false);
-    }, 2000); // Adjust this value according to your actual loading time
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+    // Simulate loading time and perform any asynchronous task if needed
+     // Adjust this value according to your actual loading time
   };
 
   return (
@@ -32,7 +63,9 @@ export default function Picturesearch() {
       {isLoading ? (
         <Loader />
       ) : (
+        diagnosis.map((item, index) => (
     <section className="relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen bg-dark">
+      
       <div className="burger md:hidden block">
         <Sidebar/>
       </div>
@@ -72,21 +105,28 @@ export default function Picturesearch() {
             <div className="flex flex-col justify-center items-center mx-auto lg:mx-0 mt-10 md:mt-0  w-full">
             
               <div className="relative animate__animated animate__slideInRight  rounded-xl m-7 py-[4rem] pl-4 bg-sap2 lg:w-[50%]  md:w-[70%] w-[90%]">
-                <div className="text-light mb-2">
+                
+                
+                    <div key={index}>
+                      <div className="text-light mb-2">
                   Disease based on your image :-
                 </div>
-                <li className="ml-5 list-disc text-light">Malaria</li>
+                <li className="ml-5 list-disc text-light">{item.disease}</li>
                 <div className="ml-5 mt-6 text-light">
                   List of doctors based on your Location
                 </div>
-                <ul className="ml-5 list-decimal text-light pl-6">
-                  <li className="mt-2">
-                    <div>Name:</div> <div>Phone No:</div> <div>Address:</div>
-                  </li>
-                  <li className="mt-2">
-                    <div>Name:</div> <div>Phone No:</div> <div>Address:</div>
-                  </li>
-                </ul>
+                      
+                      <ul className="ml-5 list-decimal overflow-y-auto h-[10rem] text-light px-[2rem]">
+                        {item.names.map((name, idx) => (
+                          <li key={idx} className="mt-2">
+                            <div>Name: {name}</div>{" "}
+                            <div>Phone No: {item.mobiles[idx]}</div>{" "}
+                            <div>Address: {item.addresses[idx]}</div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  
                 <button
                   id="submit"
                   className="md:w-[50px] w-[40px] self-center rounded-full bg-sap2  hover:bg-sap absolute bottom-[0.5rem] right-[1rem] b-shadow"
@@ -100,7 +140,10 @@ export default function Picturesearch() {
                   htmlFor="upload"
                   className="md:w-[10rem] w-[8rem]  bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap "
                 >
-                  <input type="file" id="upload" style={{ display: "none" }} />
+                  <input type="file" id="upload" style={{ display: "none" }} onChange={(e) => {
+          const file = e.target.files[0];
+          setSelectedFile(file);
+        }} />
                   <img src={browse} alt="Browse" className="w-[1.8rem] sm:w-[2rem] md:w-[3rem]"/>
                   <p className="text-light  text-[0.7rem] xl:text-[1.2rem] md:text-[0.9rem]">Browse</p>
                 </label>
@@ -136,6 +179,8 @@ export default function Picturesearch() {
                   <input
                     type="text"
                     placeholder="Location.."
+                    value={location}
+                    onChange={(e)=>{setLocation(e.target.value)}}
                     className="md:w-[8rem] w-[8rem]    md:h-12 h-8 sm:h-10 bg-sap2 rounded-xl px-3 pl-10 md:pb-2 placeholder-light text-light  hover:bg-sap text-[10px]  md:text-[16px] "
                   />
                 </div>
@@ -148,7 +193,9 @@ export default function Picturesearch() {
             <Bottomnav />
           </div>
           </div>
+          
         </section>
+        ))
       )}
     </>
   );
