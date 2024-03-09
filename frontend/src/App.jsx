@@ -8,7 +8,7 @@ import Diseases_search from './Components/Diseases_search';
 import Error from './Components/Error';
 
 function App() {
-  
+  const [userEmail, setUserEmail] = useState("");
   return (
       <section className='main relative'>
         <Router>
@@ -16,9 +16,9 @@ function App() {
             <Route
               path="/"
               index
-              element={<Home/>}
+              element={<Home userEmail={userEmail} setUserEmail={setUserEmail}/>}
             />
-            <Route path='/pics' element={<Picturesearch />} />
+            <Route path='/pics' element={<Picturesearch userEmail={userEmail}/>} />
             <Route path='/disease' element={<Diseases_search />} />
             <Route path="/error" element={<Error />} />
           </Routes>

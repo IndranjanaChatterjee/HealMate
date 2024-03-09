@@ -154,4 +154,3 @@ class Generate:
         generated_data = self.database.update_list(user_email, disease, names, addresses, mobiles)
         print(generated_data)
         return generated_data
-

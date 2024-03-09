@@ -28,11 +28,9 @@ class Database:
                 'doctor_lists': []
             }
             self.COLLECTION.insert_one(new_user)
-            return None  # User does not exist, no session token generated
-        else:
-            # Generate and return a random string as a session token
-            session_token = str(uuid.uuid4())
-            return session_token
+        
+        session_token = str(uuid.uuid4())
+        return session_token
         
     def update_list(self, user_email, disease, names, addresses, mobiles):
         user_query = {'email': user_email}
