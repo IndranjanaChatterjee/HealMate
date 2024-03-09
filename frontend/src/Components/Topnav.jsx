@@ -34,6 +34,15 @@ export default function Topnav() {
         }
     },
 });
+
+const handleLogout = async()=>{
+  await axios.post(`${baseURL}/logout`)
+  .then((res)=>{
+      setIsLoggedIn(false);
+      localStorage.removeItem('userData');
+      navigate('/');
+  })
+}
   return (
     <>
       <div className="up text-[#ffffff]  flex flex-row justify-between items-center  pt-[1rem]">
@@ -51,7 +60,7 @@ export default function Topnav() {
         </div>
         {
           isLoggedIn?(
-            <img src={show} alt="" />
+            <img src={show} alt="" className="rounded-full w-[3rem] cursor-pointer md:w-[4rem] relative right-[5%]" onClick={handleLogout} />
           ):(
             <Link
             className="register flex flex-row justify-center items-center gap-[3rem]   mx-[3rem] sm:text-[1.5rem] text-[1rem] text-[#ffffff]  "
