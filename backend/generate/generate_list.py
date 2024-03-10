@@ -135,7 +135,7 @@ class Generate:
         names, addresses, mobiles = self.parse_response(response.text)
 
         generated_data = self.database.update_list(user_email, r_image.text, names, addresses, mobiles)
-        return generated_data
+        return generated_data 
     
     def get_text_list(self,location,symptoms, user_email):
         """ 
