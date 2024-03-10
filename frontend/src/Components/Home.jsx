@@ -6,12 +6,12 @@ import Home_about from './Home_about';
 import Footer from './Footer';
 
 
-export default function Home() {
+export default function Home({userEmail,setUserEmail, userPicture, setUserPicture}) {
   
   return (
     <section className='min-h-screen relative w-screen home overflow-x-hidden'>
         <div className='absolute top-0 w-full z-[999]'>
-        <Topnav />
+        <Topnav userEmail={userEmail} setUserEmail={setUserEmail} userPicture={userPicture} setUserPicture={setUserPicture}/>
         </div>
         
         <Videosection/>

@@ -4,7 +4,7 @@ import { Link, useNavigate, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import {useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-export default function Topnav() {
+export default function Topnav({userEmail,setUserEmail,userPicture, setUserPicture}) {
   const navigate = useNavigate();
   const baseURL = import.meta.env.VITE_BASE_URL;
   const [show,setShow] = useState("");
@@ -25,6 +25,8 @@ export default function Topnav() {
                 localStorage.setItem('userData', JSON.stringify(res.data.user));
                 setIsLoggedIn(true);
                 setShow(res.data.user.picture);
+                setUserEmail(res.data.user.email);
+                setUserPicture(res.data.user.picture);
             } else {
                 navigate('/error');
             }
@@ -34,6 +36,15 @@ export default function Topnav() {
         }
     },
 });
+
+const handleLogout = async()=>{
+  await axios.post(`${baseURL}/logout`)
+  .then((res)=>{
+      setIsLoggedIn(false);
+      localStorage.removeItem('userData');
+      navigate('/');
+  })
+}
   return (
     <>
       <div className="up text-[#ffffff]  flex flex-row justify-between items-center  pt-[1rem]">
@@ -51,7 +62,7 @@ export default function Topnav() {
         </div>
         {
           isLoggedIn?(
-            <img src={show} alt="" />
+            <img src={show} alt="" className="rounded-full w-[3rem] cursor-pointer md:w-[4rem] relative right-[5%]" onClick={handleLogout} />
           ):(
             <Link
             className="register flex flex-row justify-center items-center gap-[3rem]   mx-[3rem] sm:text-[1.5rem] text-[1rem] text-[#ffffff]  "

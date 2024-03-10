@@ -8,7 +8,7 @@ from flask import Flask, jsonify,request, session
 from flask_cors import CORS
 from flask_session import Session
 from generate.generate_list import Generate
-
+from database.database import Database
 #Working Code
 gemini_api_key = os.environ.get("GEMINI_API_KEY")
 FLASK_SECRET_KEY = os.environ.get("FLASK_SECRET_KEY")
@@ -60,6 +60,10 @@ def login():
             session['user'] = user_data
             name = user_data['name']
             email = user_data['email']
+            picture = user_data['picture']
+            print(f"{email}\n{picture}")
+            database = Database()
+            token = database.user_login(name,email,picture)
             email_verified = user_data['email_verified']
             sub = user_data['sub']
             #Database Inserting line will go here
@@ -96,7 +100,6 @@ def get_text_diagnosis():
 
 
 @app.route('/get_image_diagnosis', methods=['POST','GET'])
-@login_required
 def get_image_diagnosis():
     """ 
     Function to generate and return the list of doctors based on image given by user
