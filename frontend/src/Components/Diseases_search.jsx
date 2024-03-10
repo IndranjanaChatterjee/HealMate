@@ -68,7 +68,7 @@ const Diseases_search = ({userEmail,userPicture}) => {
            <div className="w-full grid place-items-center">
             <div className="text-light mb-2 text-[1.5rem]">Previous Searches</div>
             <ul className="list-disc text-light text-[1rem]">
-              <li>{userEmail}</li>
+              <li>Rickets</li>
               <li>Osteoporosis</li>
               <li>Rickets</li>
               <li>Osteoporosis</li>

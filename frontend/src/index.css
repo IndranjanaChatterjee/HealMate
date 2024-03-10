@@ -35,9 +35,20 @@ body {
   text-shadow: 2px 2px 8px #00ff29;
 }
 .homebtn {
+  background-image: url("./assets/bgGradient.png");
+  background-size: cover;
+  background-position: center;
+}
+.imgbtn {
   background-image: url("./assets/back.png");
   background-size: cover;
   background-position: center;
+}
+.error {
+  background: url("../src/assets/errorpage.png");
+  background-size: cover ;
+  background-position: center;
+  font-family: "Roboto Mono", monospace;
 }
 .refer {
   font-family: "Roboto Mono", monospace;
