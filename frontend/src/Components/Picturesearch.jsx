@@ -59,11 +59,11 @@ export default function Picturesearch({userEmail,userPicture}) {
       {isLoading ? (
         <Loader />
       ) : (
-    <section className="relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen bg-dark">
+    <section className="imgbtn relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen ">
       <div className="burger md:hidden block">
         <Sidebar/>
       </div>
-      <div className="flex justify-center py-[0.7rem] items-center md:justify-center  w-screen h-screen bg-dark  overflow-x-hidden  z-0 ">
+      <div className="flex justify-center py-[0.7rem] items-center md:justify-center  w-screen h-screen  overflow-x-hidden  z-0 ">
                  <div className="  bg-sap2 left-0    w-[20rem] text-[10px]   h-full rounded-tr-[2rem] rounded-br-[2rem]  flex-col justify-center items-center relative z-20 hidden md:block">
            <div className="w-full grid place-items-center">
             <img
