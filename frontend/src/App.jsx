@@ -6,7 +6,7 @@ import Home from './Components/Home';
 import Picturesearch from './Components/Picturesearch';
 import Diseases_search from './Components/Diseases_search';
 import Error from './Components/Error';
-
+import Dashboard from './Components/Dashboard';
 function App() {
   const [userEmail, setUserEmail] = useState("");
   const [userPicture, setUserPicture] = useState("");
@@ -23,6 +23,7 @@ function App() {
             <Route path='/pics' element={<Picturesearch userEmail={userEmail} userPicture={userPicture}/>} />
             <Route path='/disease' element={<Diseases_search userEmail={userEmail} userPicture={userPicture}/>} />
             <Route path="/error" element={<Error />} />
+            <Route path='/dashboard' element={<Dashboard isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>} />
           </Routes>
         </Router>
       </section>

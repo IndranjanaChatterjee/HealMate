@@ -46,6 +46,14 @@ const handleLogout = async()=>{
       navigate('/');
   })
 } 
+  const handleDashboard = ()=>{
+    navigate('/dashboard'/* ,{state:{
+      isLoggedIn:isLoggedIn,
+      setIsLoggedIn:setIsLoggedIn,
+      LoggedIn:LoggedIn,
+      setLoggedIn:setLoggedIn
+    }} */);
+  }
   return (
     <>
       <div className="up text-[#ffffff]  flex flex-row justify-between items-center  pt-[1rem]">
@@ -63,7 +71,7 @@ const handleLogout = async()=>{
         </div>
         {
           (isLoggedIn || LoggedIn)?(
-            <img src={(LoggedIn)?userPicture:show} alt="Image" className="rounded-full w-[3rem] cursor-pointer md:w-[4rem] relative right-[5%]" onClick={handleLogout} />
+            <img src={(LoggedIn)?userPicture:show} alt="Image" className="rounded-full w-[3rem] cursor-pointer md:w-[4rem] relative right-[5%]" onClick={handleDashboard} />
           ):(
             <Link
             className="register flex flex-row justify-center items-center gap-[3rem]   mx-[3rem] sm:text-[1.5rem] text-[1rem] text-[#ffffff]  "
