@@ -9,7 +9,8 @@ import pic4 from "../assets/pic4.jpg";
 import pic5 from "../assets/pic5.jpg";
 import pic6 from "../assets/pic6.png";
 import pic7 from "../assets/pic7.png";
-import pic8 from "../assets/pic8.png";
+import pic8 from "../assets/exa.png";
+import pic9 from "../assets/text.png";
 import camera from "../assets/cam.png";
 import mic from "../assets/mic.png";
 import { Typewriter } from "react-simple-typewriter";
@@ -42,77 +43,13 @@ export default function Home_about() {
               </span>
             </div>
             <div className="lg:w-[30rem] ">
-              <Carousel
-                infiniteLoop={true}
-                autoPlay={true}
-                transitionTime={300}
-                dynamicHeight={true}
-                interval={2000}
-                showThumbs={false}
-              >
-                <div className="rounded-[2rem]">
-                  <img
-                    src={pic}
-                    className="rounded-[1rem] w-[15rem] h-[30rem]"
-                  />
-                </div>
-                <div>
-                  <img
-                    src={pic2}
-                    className="rounded-[1rem] w-[15rem] h-[30rem]"
-                  />
-                  
-                </div>
-                <div>
-                  <img
-                    src={pic3}
-                    className="rounded-[1rem] w-[15rem] h-[30rem]"
-                  />
-                </div>
-                <div>
-                  <img
-                    src={pic4}
-                    className="rounded-[1rem] w-[15rem] h-[30rem]"
-                  />
-                </div>
-                <div>
-                  <img
-                    src={pic5}
-                    className="rounded-[1rem] w-[15rem] h-[30rem]"
-                  />
-                </div>
-              </Carousel>
+              <img src={pic8} alt="" />
+
             </div>
           </div>
           <div className="flex lg:flex-row flex-col-reverse lg:justify-between justify-center items-center max-w-[80rem]  glass_one rounded-[0.7rem]">
             <div className="lg:w-[30rem]">
-              <Carousel
-                infiniteLoop={true}
-                autoPlay={true}
-                transitionTime={300}
-                dynamicHeight={true}
-                interval={2000}
-                showThumbs={false}
-              >
-                <div>
-                  <img
-                    src={pic6}
-                    className="rounded-[1rem] w-[15rem] h-[30rem]"
-                  />
-                </div>
-                <div>
-                  <img
-                    src={pic7}
-                    className="rounded-[1rem] w-[15rem] h-[30rem]"
-                  />
-                </div>
-                <div>
-                  <img
-                    src={pic8}
-                    className="rounded-[1rem] w-[15rem] h-[30rem]"
-                  />
-                </div>
-              </Carousel>
+              <img src={pic9} alt="" />
             </div>
             <div className="text-[#ffffff] text-center glow m-[2rem] text-[1.3rem]  md:w-[50%] w-[90%]">
               <p>
@@ -120,7 +57,7 @@ export default function Home_about() {
                 let HealMate take care of the rest
               </p>
               <span className="flex justify-center items-center ">
-                <img src={camera} alt="img" className="w-[4rem]" />
+                <img src={mic} alt="img" className="w-[4rem]" />
                 <NavLink to="/disease" className="underline">Try it out</NavLink>
               </span>
             </div>

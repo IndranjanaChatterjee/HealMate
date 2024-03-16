@@ -4,7 +4,7 @@ import { Link, useNavigate, Outlet } from "react-router-dom";
 import { motion } from "framer-motion";
 import {useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
-export default function Topnav({userEmail,setUserEmail,userPicture, setUserPicture}) {
+export default function Topnav({LoggedIn, setLoggedIn,userEmail,setUserEmail,userPicture, setUserPicture}) {
   const navigate = useNavigate();
   const baseURL = import.meta.env.VITE_BASE_URL;
   const [show,setShow] = useState("");
@@ -42,6 +42,7 @@ const handleLogout = async()=>{
   .then((res)=>{
       setIsLoggedIn(false);
       localStorage.removeItem('userData');
+      setLoggedIn(false);
       navigate('/');
   })
 }
@@ -61,8 +62,8 @@ const handleLogout = async()=>{
           </Link>
         </div>
         {
-          isLoggedIn?(
-            <img src={show} alt="" className="rounded-full w-[3rem] cursor-pointer md:w-[4rem] relative right-[5%]" onClick={handleLogout} />
+          (isLoggedIn || LoggedIn)?(
+            <img src={(LoggedIn)?userPicture:show} alt="Image" className="rounded-full w-[3rem] cursor-pointer md:w-[4rem] relative right-[5%]" onClick={handleLogout} />
           ):(
             <Link
             className="register flex flex-row justify-center items-center gap-[3rem]   mx-[3rem] sm:text-[1.5rem] text-[1rem] text-[#ffffff]  "

@@ -42,6 +42,7 @@ body {
 .imgbtn {
   background-image: url("./assets/back.png");
   background-size: cover;
+  background-attachment: fixed;
   background-position: center;
 }
 .error {
@@ -49,6 +50,10 @@ body {
   background-size: cover ;
   background-position: center;
   font-family: "Roboto Mono", monospace;
+}
+.visibility
+{
+  display: block;
 }
 .refer {
   font-family: "Roboto Mono", monospace;
@@ -122,6 +127,11 @@ a:hover .hov {
 @media only screen and (max-width: 410px) {
   .leftSection ul li {
     list-style: none;
+  }
+}
+@media only screen and (max-width:405px) {
+  .visibility{
+    display: none;
   }
 }
 .up {

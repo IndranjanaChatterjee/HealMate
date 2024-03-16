@@ -52,7 +52,7 @@ const Diseases_search = ({userEmail,userPicture}) => {
       {isLoading ? (
         <Loader />
       ) : (
-    <section className="relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen bg-dark">
+    <section className="imgbtn relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen bg-dark">
       <div className="burger lg:hidden block">
         <Sidebar/>
       </div>

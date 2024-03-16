@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { FaBars } from "react-icons/fa"; 
 import Bottomnav from "./Bottomnav";
 import avatar from "../assets/avatar.png";
@@ -7,6 +7,7 @@ import browse from "../assets/browse-removebg-preview.png";
 import cap from "../assets/capture-removebg-preview.png";
 import generate from "../assets/arrow-removebg-preview.png";
 import logo from "../assets/Logo.png";
+
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Loader from "./Loader";
@@ -15,6 +16,7 @@ export default function Picturesearch({userEmail,userPicture}) {
   const baseURL = import.meta.env.VITE_BASE_URL;
   const [showLeftSection, setShowLeftSection] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [preview, setPreview] = useState(true);
   const [image, setImage] = useState([]);
   const [selectedFile, setSelectedFile] = useState(null);
   const [location, setLocation] = useState('');
@@ -25,7 +27,17 @@ export default function Picturesearch({userEmail,userPicture}) {
     const file = e.target.files[0];
     setSelectedFile(file);
   };
+  const handleCaptureChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    setPreview(true);
+    alert("File uploaded successfully");
+  };
   const handleSubmitClick = async() => {
+    setDiagnosis([]);
+    setDisease('');
+    setName([]);
+    setLocation('');
     console.log(selectedFile)
     setIsLoading(true);
     const formData = new FormData();
@@ -45,21 +57,31 @@ export default function Picturesearch({userEmail,userPicture}) {
         mobiles: res.data.data.disease[0].mobiles,
       };
       setDiagnosis((prevDiagnosis) => [...prevDiagnosis, newDiagnosis]);
+      setPreview(false);
       setDisease(res.data.data.disease[0].disease);
       setName(res.data.data.disease[0].names);
       setIsLoading(false);
     })
     .catch((err)=>{
+      setIsLoading(false);
       console.log(err)
     })
   };
-
+  useEffect(()=>{
+    if(preview)
+    {
+      setDiagnosis([]);
+    setDisease('');
+    setName([]);
+    setLocation('');
+    }
+  },[preview]);
   return (
     <>
       {isLoading ? (
         <Loader />
       ) : (
-    <section className="imgbtn relative min-h-[120vh] xl:min-h-screen flex justify-start md:justify-center items-center w-screen ">
+    <section className="imgbtn relative min-h-[120vh] flex justify-start md:justify-center items-center w-screen ">
       <div className="burger md:hidden block">
         <Sidebar/>
       </div>
@@ -99,7 +121,13 @@ export default function Picturesearch({userEmail,userPicture}) {
             <div className="flex flex-col justify-center items-center mx-auto lg:mx-0 mt-10 md:mt-0  w-full">
             
               <div className="relative animate__animated animate__slideInRight  rounded-xl m-7 py-[4rem] pl-4 bg-sap2 lg:w-[50%]  md:w-[70%] w-[90%]">
-                
+              {selectedFile && (
+    <img
+      src={URL.createObjectURL(selectedFile)}
+      alt="Uploaded"
+      className={` ${(preview)?"block":"hidden"} mt-4 mb-4 rounded-md w-[10rem] h-[7rem] absolute top-0 right-2`}
+    />
+  )}
                 {diagnosis.map((item, index) => (
                     <div key={index}>
                       <div className="text-light mb-2">
@@ -132,29 +160,31 @@ export default function Picturesearch({userEmail,userPicture}) {
               <div className=" lg:w-[50%]  md:w-[70%] w-[90%] flex justify-between  gap-[1rem] items-center    animate__animated animate__slideInLeft  ">
                 <label
                   htmlFor="upload"
-                  className="md:w-[10rem] w-[8rem]  bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap "
+                  className="md:w-[10rem]   bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap "
                 >
                   <input type="file" id="upload" style={{ display: "none" }} onChange={(e) => {
           const file = e.target.files[0];
           setSelectedFile(file);
+          setPreview(true);
+          alert("File uploaded successfully");
         }} />
                   <img src={browse} alt="Browse" className="w-[1.8rem] sm:w-[2rem] md:w-[3rem]"/>
-                  <p className="text-light  text-[0.7rem] xl:text-[1.2rem] md:text-[0.9rem]">Browse</p>
+                  <p className="text-light visibility text-[0.7rem] xl:text-[1.2rem] md:text-[0.9rem]">Browse</p>
                 </label>
                 <label
                   htmlFor="capture"
-                  className="md:w-[10rem] w-[8rem]    bg-sap2 rounded-xl  flex justify-start items-center  hover:bg-sap "
+                  className="md:w-[10rem]   bg-sap2 rounded-xl px-3 flex justify-start items-center  hover:bg-sap"
                 >
                   <input
                     type="file"
                     id="capture"
                     accept="image/*"
-                    capture="user"
+                    capture="environment"
                     style={{ display: "none" }}
-
+                    onChange={handleCaptureChange}
                   />
                   <img src={cap} alt="Capture" className="w-[1.7rem] sm:w-[2rem] md:w-[3rem]"/>
-                  <p className="text-light  text-[0.6rem] xl:text-[1.2rem] md:text-[0.9rem] ">
+                  <p className="text-light visibility text-[0.6rem] xl:text-[1.2rem] md:text-[0.9rem] ">
                     Capture
                   </p>
                 </label>

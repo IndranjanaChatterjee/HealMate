@@ -10,6 +10,7 @@ import Error from './Components/Error';
 function App() {
   const [userEmail, setUserEmail] = useState("");
   const [userPicture, setUserPicture] = useState("");
+  const [isLoggedIn,setIsLoggedIn] = useState(false);
   return (
       <section className='main relative'>
         <Router>
@@ -17,7 +18,7 @@ function App() {
             <Route
               path="/"
               index
-              element={<Home userEmail={userEmail} setUserEmail={setUserEmail} userPicture={userPicture} setUserPicture={setUserPicture}/>}
+              element={<Home isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} userEmail={userEmail} setUserEmail={setUserEmail} userPicture={userPicture} setUserPicture={setUserPicture}/>}
             />
             <Route path='/pics' element={<Picturesearch userEmail={userEmail} userPicture={userPicture}/>} />
             <Route path='/disease' element={<Diseases_search userEmail={userEmail} userPicture={userPicture}/>} />

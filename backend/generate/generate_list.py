@@ -64,10 +64,8 @@ class Generate:
         
         Returns: response.text :str
         """
-        print(f"====== Symptoms: {symptoms} =====")
         prompt = f"I am suffering from {symptoms}. Identify the disease.Provide the common name of the disease. Provide only the disease name and nothing else."
         response = self.modelText.generate_content(prompt)
-        print(f"====== Symptoms: {response} =====")
         return response.text
 
     def parse_response(self,response):
@@ -126,12 +124,12 @@ class Generate:
         image.save(full_save_path)
         img = PIL.Image.open(image)
         self.cloud_upload(full_save_path,new_name)
-        r_image = self.modelImage.generate_content([IMG_PROMPT, img], stream=True)
+        r_image = self.modelImage.generate_content([IMG_PROMPT, img])
         r_image.resolve()
-        print(r_image.text)
+        self.cloud_delete(new_name) 
+        print(f"=========== Disease: {r_image.text} ===========")
         prompt = eval(f'f"{self.GEMINI_IMAGE_PROMPT}"')
         response = self.modelText.generate_content(prompt)
-        self.cloud_delete(new_name) 
         names, addresses, mobiles = self.parse_response(response.text)
 
         generated_data = self.database.update_list(user_email, r_image.text, names, addresses, mobiles)
@@ -145,12 +143,9 @@ class Generate:
         
         Returns: generated_data :list
         """
-        print(f"====== Symptoms: {symptoms} =====")
         disease = self.identify_text_disease(symptoms)
-        print(f"====== Disease: {disease} =====")
         prompt = eval(f'f"{self.GEMINI_TEXT_PROMPT}"')
         response = self.modelText.generate_content(prompt)
         names, addresses, mobiles = self.parse_response(response.text)
         generated_data = self.database.update_list(user_email, disease, names, addresses, mobiles)
-        print(generated_data)
         return generated_data
