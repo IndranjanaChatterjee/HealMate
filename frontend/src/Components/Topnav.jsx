@@ -45,7 +45,7 @@ const handleLogout = async()=>{
       setLoggedIn(false);
       navigate('/');
   })
-}
+} 
   return (
     <>
       <div className="up text-[#ffffff]  flex flex-row justify-between items-center  pt-[1rem]">
